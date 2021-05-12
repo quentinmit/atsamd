@@ -34,6 +34,10 @@ macro_rules! map {
             type Id = $PinId;
             type Mode = Alternate<$Cfg>;
         }
+        $( #[$cfg] )?
+        impl AlternateMap for Pin<$PinId, Alternate<$Cfg>> {
+            type Pad = Pad<$Sercom, $PadNum, Map<$Sercom, $PadNum, Id = $PinId, Mode = Alternate<$Cfg>>>;
+        }
     };
     // Multiple instances, with optional attribute
     (
